@@ -1,3 +1,5 @@
+package conexao;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -11,7 +13,7 @@ public class Conexao {
     private static Connection conn;
     private final static String driver = "org.postgresql.Driver";
     private final static String ip = "localhost/";
-    public static String dataBase = "aula";
+    public static String dataBase = "formula01";
     public static String user = "postgres";
     public static String password = "postgres";
 
