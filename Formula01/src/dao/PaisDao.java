@@ -27,30 +27,26 @@ public class PaisDao {
             System.out.println(ex.getMessage());
             return false;
         }
-        
-        
     }
-        public static List<String[]> consultar() {
-           List<String[]> resultados = new ArrayList<>();
-           String sql = "SELECT sigla, nome FROM pais";
-           PreparedStatement ps;
-           try {
-               ps = conexao.Conexao.getConexao().prepareStatement(sql);
-               ResultSet rs = ps.executeQuery();
-               while (rs.next()) {
-                   String[] linha = new String[2];
-                   linha[0] = rs.getString("sigla");
-                   linha[1] = rs.getString("nome");
-                   resultados.add(linha);
-               }
-               return resultados;
-           } catch (SQLException | ClassNotFoundException ex) {
-               Logger.getLogger(PaisDao.class.getName()).log(Level.SEVERE, null, ex);
-               return null;
-           }
+        public static boolean alterar(String sigla, String nome) 
+        {
+            String sql = "UPDATE pais SET nome = ? WHERE sigla = ?";
+            try 
+            {
+                PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+                ps.setString(1, nome);
+                ps.setString(2, sigla);
+                ps.executeUpdate();
+                return true;
+            } 
+            catch (SQLException | ClassNotFoundException ex) 
+            {
+                System.out.println(ex.getMessage());
+                return false;
+            }
         }
     public static void main(String[] args) {
-        boolean resultado = inserir("BR", "Brasil");
+        boolean resultado = alterar("BR", "brail");
         if (resultado){
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
         }else{
