@@ -65,6 +65,22 @@ public class PaisDao {
                 return false;
             }
         }
+        public static boolean excluir(String sigla)
+        {
+            String sql = "DELETE FROM pais WHERE sigla = ?";
+            try
+            {
+                PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+                ps.setString(1, sigla);
+                ps.executeUpdate();
+                return true;
+            } 
+            catch (SQLException | ClassNotFoundException ex) 
+            {
+                System.out.println(ex.getMessage());
+                return false;
+            }
+        }
     public static void main(String[] args) {
         boolean resultado = alterar("BR", "Brasil");
         if (resultado){

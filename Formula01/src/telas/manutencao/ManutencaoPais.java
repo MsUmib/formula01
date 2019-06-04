@@ -5,6 +5,7 @@
  */
 package telas.manutencao;
 
+import dao.PaisDao;
 import static dao.PaisDao.inserir;
 import javax.swing.JOptionPane;
 
@@ -38,10 +39,10 @@ public class ManutencaoPais extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jtfSigla = new javax.swing.JTextField();
         jtfNome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jAdicionar = new javax.swing.JButton();
+        jAlterar = new javax.swing.JButton();
+        jExcluir = new javax.swing.JButton();
+        jCancelar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,18 +77,28 @@ public class ManutencaoPais extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jAdicionar.setText("Adicionar");
+        jAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jAdicionarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Alternar");
+        jAlterar.setText("Alternar");
+        jAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAlterarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Excluir");
+        jExcluir.setText("Excluir");
 
-        jButton4.setText("Cancelar");
+        jCancelar.setText("Cancelar");
+        jCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,13 +117,13 @@ public class ManutencaoPais extends javax.swing.JDialog {
                             .addComponent(jtfNome)
                             .addComponent(jtfSigla)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jAdicionar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(jAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(jExcluir)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
+                        .addComponent(jCancelar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -130,10 +141,10 @@ public class ManutencaoPais extends javax.swing.JDialog {
                     .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jAdicionar)
+                    .addComponent(jAlterar)
+                    .addComponent(jExcluir)
+                    .addComponent(jCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -148,14 +159,27 @@ public class ManutencaoPais extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfNomeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdicionarActionPerformed
         boolean resultado = inserir(jtfSigla.getText(), jtfNome.getText());
         if (resultado){
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
         }else{
             JOptionPane.showMessageDialog(null, "Erro!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jAdicionarActionPerformed
+
+    private void jCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCancelarActionPerformed
+            dispose();
+    }//GEN-LAST:event_jCancelarActionPerformed
+
+    private void jAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAlterarActionPerformed
+        boolean resultado = PaisDao.alterar(jtfSigla.getText(), jtfNome.getText());
+        if (resultado){
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }//GEN-LAST:event_jAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,10 +224,10 @@ public class ManutencaoPais extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jAdicionar;
+    private javax.swing.JButton jAlterar;
+    private javax.swing.JButton jCancelar;
+    private javax.swing.JButton jExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
