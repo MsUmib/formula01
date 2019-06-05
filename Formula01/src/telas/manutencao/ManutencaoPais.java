@@ -92,6 +92,11 @@ public class ManutencaoPais extends javax.swing.JDialog {
         });
 
         jExcluir.setText("Excluir");
+        jExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExcluirActionPerformed(evt);
+            }
+        });
 
         jCancelar.setText("Cancelar");
         jCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -161,9 +166,12 @@ public class ManutencaoPais extends javax.swing.JDialog {
 
     private void jAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdicionarActionPerformed
         boolean resultado = inserir(jtfSigla.getText(), jtfNome.getText());
-        if (resultado){
+        if (resultado)
+        {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
-        }else{
+        }
+        else
+        {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
     }//GEN-LAST:event_jAdicionarActionPerformed
@@ -174,12 +182,27 @@ public class ManutencaoPais extends javax.swing.JDialog {
 
     private void jAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAlterarActionPerformed
         boolean resultado = PaisDao.alterar(jtfSigla.getText(), jtfNome.getText());
-        if (resultado){
+        if (resultado)
+        {
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
-        }else{
+        }
+        else
+        {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
     }//GEN-LAST:event_jAlterarActionPerformed
+
+    private void jExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExcluirActionPerformed
+        boolean resultado = PaisDao.excluir(jtfSigla.getText());
+        if (resultado)
+        {
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }//GEN-LAST:event_jExcluirActionPerformed
 
     /**
      * @param args the command line arguments
